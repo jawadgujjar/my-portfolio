@@ -1,0 +1,459 @@
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans",
+    "Droid Sans", "Helvetica Neue", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Main Container */
+.portfolio-container {
+  min-height: 100vh;
+  background-color: #111827;
+  color: white;
+  display: flex;
+}
+
+/* Left Sidebar */
+.left-sidebar {
+  width: 320px;
+  background-color: #1f2937;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.profile-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px;
+}
+
+.profile-image {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background-color: #374151;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.profile-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.exp-badge {
+  color: #10b981;
+  font-size: 14px;
+}
+
+.info-section {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+
+.info-item {
+  display: flex;
+  flex-direction: column;
+}
+
+.info-label {
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 8px;
+  letter-spacing: 0.05em;
+}
+
+.info-value {
+  color: white;
+  font-size: 16px;
+}
+
+.social-section {
+  margin-bottom: 32px;
+}
+
+.social-title {
+  color: #9ca3af;
+  font-size: 12px;
+  font-weight: 500;
+  margin-bottom: 16px;
+  letter-spacing: 0.05em;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.social-link {
+  color: #d1d5db;
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.social-link:hover {
+  color: #10b981;
+}
+
+.download-btn {
+  background-color: #10b981;
+  color: white;
+  font-weight: 500;
+  padding: 12px 24px;
+  border-radius: 8px;
+  border: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: auto;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.download-btn:hover {
+  background-color: #059669;
+}
+
+.download-icon {
+  width: 16px;
+  height: 16px;
+}
+
+/* Main Content */
+.main-content {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.content-wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+/* Hero Section */
+.hero-section {
+  margin-bottom: 64px;
+}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 32px;
+}
+
+.green-dot {
+  width: 8px;
+  height: 8px;
+  background-color: #10b981;
+  border-radius: 50%;
+}
+
+.section-label {
+  color: #10b981;
+  font-size: 12px;
+  font-weight: 500;
+  letter-spacing: 0.05em;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: bold;
+  margin-bottom: 32px;
+  line-height: 1.2;
+}
+
+.highlight {
+  color: #10b981;
+}
+
+.availability-section {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.availability-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.availability-text {
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+.hire-btn {
+  background-color: #10b981;
+  color: white;
+  font-weight: 500;
+  padding: 12px 32px;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 48px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.hire-btn:hover {
+  background-color: #059669;
+}
+
+.tech-label {
+  margin-bottom: 32px;
+}
+
+.tech-badge {
+  background-color: #1f2937;
+  border-radius: 8px;
+  padding: 16px;
+  display: inline-block;
+}
+
+.tech-trusted {
+  font-size: 10px;
+  color: #9ca3af;
+  display: block;
+  margin-bottom: 8px;
+}
+
+.tech-technologies {
+  font-size: 10px;
+  color: #9ca3af;
+}
+
+.tech-icons {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+}
+
+.tech-icon {
+  width: 48px;
+  height: 48px;
+  background-color: #374151;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tech-text {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.tech-text.js {
+  color: #60a5fa;
+}
+
+.tech-text.ts {
+  color: #3b82f6;
+}
+
+.tech-text.js-alt {
+  color: #fbbf24;
+}
+
+.tech-text.react {
+  color: #60a5fa;
+}
+
+.tech-text.node {
+  color: #10b981;
+}
+
+.tech-text.python {
+  color: #2563eb;
+}
+
+/* About Section */
+.about-section {
+  margin-bottom: 64px;
+}
+
+.about-title {
+  font-size: 36px;
+  font-weight: bold;
+  margin-bottom: 48px;
+}
+
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 48px;
+  margin-bottom: 64px;
+}
+
+.contact-column {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.contact-item {
+  display: flex;
+}
+
+.contact-label {
+  color: #9ca3af;
+  width: 96px;
+}
+
+.contact-colon {
+  color: #9ca3af;
+  margin-right: 16px;
+}
+
+.contact-value {
+  color: white;
+}
+
+/* Stats */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-number {
+  font-size: 36px;
+  font-weight: bold;
+  color: #10b981;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  font-size: 12px;
+  color: #9ca3af;
+}
+
+/* Right Sidebar */
+.right-sidebar {
+  width: 64px;
+  background-color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 0;
+  gap: 24px;
+}
+
+.nav-btn {
+  padding: 12px;
+  border-radius: 8px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.nav-btn:hover {
+  background-color: #374151;
+}
+
+.nav-icon {
+  width: 20px;
+  height: 20px;
+  color: #9ca3af;
+  transition: color 0.2s ease;
+}
+
+.nav-btn:hover .nav-icon {
+  color: #10b981;
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .left-sidebar {
+    width: 280px;
+  }
+
+  .hero-title {
+    font-size: 36px;
+  }
+
+  .contact-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 768px) {
+  .portfolio-container {
+    flex-direction: column;
+  }
+
+  .left-sidebar {
+    width: 100%;
+    flex-direction: row;
+    padding: 16px;
+  }
+
+  .profile-section {
+    margin-bottom: 0;
+    margin-right: 24px;
+  }
+
+  .info-section {
+    flex-direction: row;
+    gap: 16px;
+    margin-bottom: 0;
+    margin-right: 24px;
+  }
+
+  .social-section {
+    margin-bottom: 0;
+    margin-right: 24px;
+  }
+
+  .download-btn {
+    margin-top: 0;
+  }
+
+  .right-sidebar {
+    width: 100%;
+    height: 64px;
+    flex-direction: row;
+    padding: 0 32px;
+  }
+
+  .hero-title {
+    font-size: 28px;
+  }
+
+  .tech-icons {
+    gap: 16px;
+    flex-wrap: wrap;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+}
