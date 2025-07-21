@@ -10,25 +10,62 @@ body {
     "Droid Sans", "Helvetica Neue", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  background-color: #111827;
+  color: white;
 }
 
 /* Main Container */
 .portfolio-container {
   min-height: 100vh;
-  background-color: #111827;
-  color: white;
   display: flex;
+  position: relative;
 }
 
-/* Left Sidebar */
+/* Left Sidebar - Fixed */
 .left-sidebar {
   width: 320px;
   background-color: #1f2937;
   padding: 24px;
   display: flex;
   flex-direction: column;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto; /* Allows scrolling if content is too tall */
 }
 
+/* Main Content - Scrollable */
+.main-content {
+  flex: 1;
+  margin-left: 320px; /* Should match left sidebar width */
+  margin-right: 64px; /* Should match right sidebar width */
+  overflow-y: auto; /* Allows scrolling */
+}
+
+.content-wrapper {
+  max-width: 1024px;
+  margin: 0 auto;
+  padding: 32px;
+}
+
+/* Right Sidebar - Fixed */
+.right-sidebar {
+  width: 64px;
+  background-color: #1f2937;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 32px 0;
+  gap: 24px;
+  position: fixed;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  overflow-y: auto; /* Allows scrolling if content is too tall */
+}
+
+/* Rest of your existing styles remain the same */
 .profile-section {
   display: flex;
   flex-direction: column;
@@ -131,18 +168,6 @@ body {
 .download-icon {
   width: 16px;
   height: 16px;
-}
-
-/* Main Content */
-.main-content {
-  flex: 1;
-  overflow-y: auto;
-}
-
-.content-wrapper {
-  max-width: 1024px;
-  margin: 0 auto;
-  padding: 32px;
 }
 
 /* Hero Section */
@@ -349,17 +374,7 @@ body {
   color: #9ca3af;
 }
 
-/* Right Sidebar */
-.right-sidebar {
-  width: 64px;
-  background-color: #1f2937;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 32px 0;
-  gap: 24px;
-}
-
+/* Navigation Buttons */
 .nav-btn {
   padding: 12px;
   border-radius: 8px;
@@ -389,6 +404,10 @@ body {
   .left-sidebar {
     width: 280px;
   }
+  
+  .main-content {
+    margin-left: 280px;
+  }
 
   .hero-title {
     font-size: 36px;
@@ -411,8 +430,14 @@ body {
 
   .left-sidebar {
     width: 100%;
+    position: relative;
     flex-direction: row;
     padding: 16px;
+  }
+
+  .main-content {
+    margin-left: 0;
+    margin-right: 0;
   }
 
   .profile-section {
@@ -441,6 +466,7 @@ body {
     height: 64px;
     flex-direction: row;
     padding: 0 32px;
+    position: relative;
   }
 
   .hero-title {
