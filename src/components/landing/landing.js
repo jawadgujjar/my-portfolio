@@ -1,4 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
+import AliceCarousel from 'react-alice-carousel';
+import 'react-alice-carousel/lib/alice-carousel.css';
 import {
   Download,
   Home,
@@ -12,6 +14,7 @@ import {
   Layers,
   Globe
 } from "lucide-react";
+import { FaGithub, FaLinkedin } from 'react-icons/fa';
 import "./landing.css";
 
 // Import all components
@@ -28,12 +31,15 @@ const Portfolio = () => {
   const rightSidebarRef = useRef(null);
   const [activeSection, setActiveSection] = useState(0);
   const [balls, setBalls] = useState([]);
+   const [displayText, setDisplayText] = useState('');
+  const fullText = "Full Stack Developer";
+  const [currentIndex, setCurrentIndex] = useState(0);
 
   // Initialize floating balls
   useEffect(() => {
     const colors = ['#10b981', '#3b82f6', '#f59e0b', '#8b5cf6'];
     const newBalls = [];
-    
+
     for (let i = 0; i < 15; i++) {
       newBalls.push({
         id: i,
@@ -46,15 +52,15 @@ const Portfolio = () => {
         opacity: Math.random() * 0.15 + 0.1
       });
     }
-    
+
     setBalls(newBalls);
 
     const moveBalls = () => {
-      setBalls(prevBalls => 
+      setBalls(prevBalls =>
         prevBalls.map(ball => {
           let newX = ball.x + ball.xSpeed;
           let newY = ball.y + ball.ySpeed;
-          
+
           if (newX > 100 || newX < 0) {
             newX = ball.x;
             ball.xSpeed *= -1;
@@ -63,7 +69,7 @@ const Portfolio = () => {
             newY = ball.y;
             ball.ySpeed *= -1;
           }
-          
+
           return {
             ...ball,
             x: newX,
@@ -71,10 +77,10 @@ const Portfolio = () => {
           };
         })
       );
-      
+
       requestAnimationFrame(moveBalls);
     };
-    
+
     const animationId = requestAnimationFrame(moveBalls);
     return () => cancelAnimationFrame(animationId);
   }, []);
@@ -84,10 +90,10 @@ const Portfolio = () => {
     const handleScroll = () => {
       sectionRefs.current.forEach((section, index) => {
         if (!section) return;
-        
+
         const rect = section.getBoundingClientRect();
         const isVisible = rect.top < window.innerHeight / 2 && rect.bottom > window.innerHeight / 2;
-        
+
         if (isVisible) {
           setActiveSection(index);
         }
@@ -97,6 +103,16 @@ const Portfolio = () => {
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+   useEffect(() => {
+    if (currentIndex < fullText.length) {
+      const timeout = setTimeout(() => {
+        setDisplayText(prev => prev + fullText[currentIndex]);
+        setCurrentIndex(prev => prev + 1);
+      }, 100); // Adjust typing speed (milliseconds)
+      
+      return () => clearTimeout(timeout);
+    }
+  }, [currentIndex]);
 
   // Scroll to section when icon is clicked
   const scrollToSection = (index) => {
@@ -107,13 +123,42 @@ const Portfolio = () => {
       });
     }
   };
+  const techItems = [
+    <div className="tech-icon" key="html">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
+    </div>,
+    <div className="tech-icon" key="css">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
+    </div>,
+    <div className="tech-icon" key="js">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
+    </div>,
+    <div className="tech-icon" key="react">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
+    </div>,
+    <div className="tech-icon" key="node">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
+    </div>,
+    <div className="tech-icon" key="postman">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" />
+    </div>,
+    <div className="tech-icon" key="mongodb">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
+    </div>,
+    <div className="tech-icon" key="nextjs">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" />
+    </div>,
+    <div className="tech-icon" key="express">
+      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" />
+    </div>
+  ];
 
   return (
     <div className="portfolio-container">
       {/* Floating background balls */}
       <div className="floating-balls">
         {balls.map(ball => (
-          <div 
+          <div
             key={ball.id}
             className="floating-ball"
             style={{
@@ -131,38 +176,44 @@ const Portfolio = () => {
 
       {/* Left Sidebar */}
       <div className="left-sidebar">
-        <div className="profile-section">
-          <div className="profile-image">
-            <img
-              src="/profile.jpeg"  
-              alt="Profile"
-              className="profile-img"
-            />
-          </div>
-          <span className="exp-badge">Full Stack Developer </span>
-        </div>
+         <div className="profile-section">
+      <div className="profile-image">
+        <img
+          src="/profile.jpeg"
+          alt="Profile"
+          className="profile-img"
+        />
+      </div>
+      <h1 className="profile-name">JAWAD AHMAD</h1>
+      <span className="exp-badge">{displayText}</span>
+    </div>
 
-        <div className="info-section">
-          <div className="info-item">
-            <h3 className="info-label">COUNTRY</h3>
-            <p className="info-value">pakistan</p>
-          </div>
-          <div className="info-item">
-            <h3 className="info-label">CITY</h3>
-            <p className="info-value">Lahore</p>
-          </div>
-          <div className="info-item">
-            <h3 className="info-label">AGE</h3>
-            <p className="info-value">22</p>
-          </div>
-        </div>
+       <div className="info-section">
+  <div className="info-row">
+    <div className="info-item">
+      <h3 className="info-label">COUNTRY</h3>
+      <p className="info-value">Pakistan</p>
+    </div>
+    <div className="info-item">
+      <h3 className="info-label">CITY</h3>
+      <p className="info-value">Lahore</p>
+    </div>
+    <div className="info-item">
+      <h3 className="info-label">AGE</h3>
+      <p className="info-value">22</p>
+    </div>
+  </div>
+</div>
 
         <div className="social-section">
           <h3 className="social-title">Social Links!</h3>
           <div className="social-links">
-            <a href="#" className="social-link">GitHub</a>
-            <a href="#" className="social-link">LinkedIn</a>
-            <a href="#" className="social-link">Twitter</a>
+            <a href="https://github.com/jawadgujjar" className="social-link">
+              <FaGithub className="social-icon" /> GitHub
+            </a>
+            <a href="https://www.linkedin.com/in/jawad-ahmad-5b303623a" className="social-link">
+              <FaLinkedin className="social-icon" /> LinkedIn
+            </a>
           </div>
         </div>
 
@@ -176,49 +227,57 @@ const Portfolio = () => {
       <div className="main-content">
         <div className="content-wrapper">
           {/* INTRODUCE SECTION */}
-          <div className="section-card" ref={el => sectionRefs.current[0] = el}>
-            <div className="section-header">
-              <div className="green-dot"></div>
-              <span className="section-label">INTRODUCE</span>
-            </div>
+         <div className="section-card" ref={el => sectionRefs.current[0] = el}>
+  <div className="section-header">
+    <div className="green-dot"></div>
+    <span className="section-label">INTRODUCE</span>
+  </div>
 
-            <h1 className="hero-title">
-              I Craft The <span className="highlight">Digital Landscape</span>
-            </h1>
-            <p className="hero-subtitle">
-              <strong>Websites, apps, design</strong>—yeah, I do all that and make it fire.
-              Let's collaborate and build something truly remarkable.
-            </p>
+  <h1 className="hero-title">
+    I Craft The <span className="highlight">Digital Landscape</span>
+  </h1>
+  <p className="hero-subtitle">
+    <strong>Websites, apps, design</strong>—yeah, I do all that and make it fire.
+    Let's collaborate and build something truly remarkable.
+  </p>
 
-            <div className="availability-section">
-              <div className="availability-item">
-                <div className="green-dot"></div>
-                <span className="availability-text">Available For Work</span>
-              </div>
-              <div className="availability-item">
-                <div className="green-dot"></div>
-                <span className="availability-text">Full Time</span>
-              </div>
-            </div>
+  <div className="availability-section">
+    <div className="availability-item">
+      <div className="green-dot"></div>
+      <span className="availability-text">Available For Work</span>
+    </div>
+    <div className="availability-item">
+      <div className="green-dot"></div>
+      <span className="availability-text">Full Time</span>
+    </div>
+  </div>
 
-            <button className="hire-btn">HIRE ME</button>
+  <button className="hire-btn">HIRE ME</button>
 
-            <div className="tech-label">
-              <div className="tech-badge">
-                <span className="tech-trusted">Trusted</span>
-                <span className="tech-technologies">Technologies</span>
-              </div>
-            </div>
-
-            <div className="tech-icons">
-              <div className="tech-icon"><span className="tech-text js">JS</span></div>
-              <div className="tech-icon"><span className="tech-text ts">TS</span></div>
-              <div className="tech-icon"><span className="tech-text js-alt">JS</span></div>
-              <div className="tech-icon"><span className="tech-text react">R</span></div>
-              <div className="tech-icon"><span className="tech-text node">N</span></div>
-              <div className="tech-icon"><span className="tech-text python">P</span></div>
-            </div>
-          </div>
+  <div className="tech-container">
+    <div className="tech-badge">
+      <span className="tech-trusted">Trusted</span>
+      <span className="tech-technologies">Technologies</span>
+    </div>
+    
+    <div className="tech-carousel-wrapper">
+      <AliceCarousel
+        mouseTracking
+        items={techItems}
+        responsive={{
+          0: { items: 3 },
+          768: { items: 5 },
+          1024: { items: 7 }
+        }}
+        autoPlay
+        autoPlayInterval={1500}
+        infinite
+        disableDotsControls
+        disableButtonsControls
+      />
+    </div>
+  </div>
+</div>
 
           {/* ABOUT ME SECTION */}
           <div className="section-card" ref={el => sectionRefs.current[1] = el}>
@@ -305,64 +364,64 @@ const Portfolio = () => {
 
       {/* Right Sidebar with 9 navigation icons */}
       <div className="right-sidebar" ref={rightSidebarRef}>
-        <button 
-          className={`nav-btn ${activeSection === 0 ? 'active' : ''}`} 
+        <button
+          className={`nav-btn ${activeSection === 0 ? 'active' : ''}`}
           onClick={() => scrollToSection(0)}
           title="Introduction"
         >
           <Home className="nav-icon" />
         </button>
-        <button 
-          className={`nav-btn ${activeSection === 1 ? 'active' : ''}`} 
+        <button
+          className={`nav-btn ${activeSection === 1 ? 'active' : ''}`}
           onClick={() => scrollToSection(1)}
           title="About Me"
         >
           <User className="nav-icon" />
         </button>
-        <button 
-          className={`nav-btn ${activeSection === 2 ? 'active' : ''}`} 
+        <button
+          className={`nav-btn ${activeSection === 2 ? 'active' : ''}`}
           onClick={() => scrollToSection(2)}
           title="Services"
         >
           <Code className="nav-icon" />
         </button>
-        <button 
-          className={`nav-btn ${activeSection === 3 ? 'active' : ''}`} 
+        <button
+          className={`nav-btn ${activeSection === 3 ? 'active' : ''}`}
           onClick={() => scrollToSection(3)}
           title="Advantages"
         >
           <Layers className="nav-icon" />
         </button>
-        <button 
-          className={`nav-btn ${activeSection === 4 ? 'active' : ''}`} 
+        <button
+          className={`nav-btn ${activeSection === 4 ? 'active' : ''}`}
           onClick={() => scrollToSection(4)}
           title="Experience"
         >
           <Briefcase className="nav-icon" />
         </button>
-        <button 
-          className={`nav-btn ${activeSection === 5 ? 'active' : ''}`} 
+        <button
+          className={`nav-btn ${activeSection === 5 ? 'active' : ''}`}
           onClick={() => scrollToSection(5)}
           title="Education"
         >
           <Award className="nav-icon" />
         </button>
-        <button 
-          className={`nav-btn ${activeSection === 6 ? 'active' : ''}`} 
+        <button
+          className={`nav-btn ${activeSection === 6 ? 'active' : ''}`}
           onClick={() => scrollToSection(6)}
           title="Projects"
         >
           <Globe className="nav-icon" />
         </button>
-        <button 
-          className={`nav-btn ${activeSection === 7 ? 'active' : ''}`} 
+        <button
+          className={`nav-btn ${activeSection === 7 ? 'active' : ''}`}
           onClick={() => scrollToSection(7)}
           title="Testimonials"
         >
           <MessageSquare className="nav-icon" />
         </button>
-        <button 
-          className={`nav-btn ${activeSection === 8 ? 'active' : ''}`} 
+        <button
+          className={`nav-btn ${activeSection === 8 ? 'active' : ''}`}
           onClick={() => scrollToSection(8)}
           title="Contact"
         >
