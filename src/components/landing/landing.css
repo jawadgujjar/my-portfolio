@@ -40,9 +40,9 @@ body {
   border-radius: 50%;
   animation: float 20s infinite ease-in-out;
   z-index: 0;
-  opacity: 0.2; /* Increased from 0.08 to 0.2 for better visibility */
-  filter: blur(0.5px); /* Reduced blur for sharper appearance */
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1); /* Added glow effect */
+  opacity: 0.2;
+  filter: blur(0.5px);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
 }
 
 @keyframes float {
@@ -165,19 +165,19 @@ body {
   margin-top: 0.25rem;
   min-height: 1.5em;
   min-width: 200px;
-  border-left: 3px solid #10b981; /* Thicker border for better visibility */
-  animation: blink-caret 1.2s ease-in-out infinite; /* Smoother animation */
+  border-left: 3px solid #10b981;
+  animation: blink-caret 1.2s ease-in-out infinite;
 }
 
 @keyframes blink-caret {
-  0%, 100% { 
+  0%, 100% {
     border-color: transparent;
-    opacity: 0.7; /* Added opacity change for smoother transition */
+    opacity: 0.7;
   }
-  50% { 
+  50% {
     border-color: #10b981;
     opacity: 1;
-    box-shadow: 0 0 5px rgba(16, 185, 129, 0.5); /* Subtle glow effect */
+    box-shadow: 0 0 5px rgba(16, 185, 129, 0.5);
   }
 }
 
@@ -364,54 +364,6 @@ body {
   margin-bottom: 2rem;
   line-height: 1.2;
 }
-/* =================alice carousel============== */
-/* Add these new styles for the tech carousel */
-.tech-icons-carousel {
-  margin: 2rem 0;
-}
-
-.tech-icons-carousel .tech-icon {
-  width: 3rem;
-  height: 3rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0.5rem;
-  transition: transform 0.2s ease;
-}
-
-.tech-icons-carousel .tech-icon:hover {
-  transform: scale(1.1);
-}
-
-.tech-icons-carousel .tech-icon img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: grayscale(100%) brightness(0.8);
-  transition: filter 0.3s ease;
-}
-
-.tech-icons-carousel .tech-icon:hover img {
-  filter: grayscale(0%) brightness(1);
-}
-
-/* Alice Carousel overrides */
-.tech-icons-carousel .alice-carousel__stage-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.tech-icons-carousel .alice-carousel__stage {
-  display: flex;
-  align-items: center;
-}
-
-/* Remove the old tech icons styles */
-.tech-icons {
-  display: none;
-}
 
 @media (min-width: 1024px) {
   .hero-title {
@@ -456,65 +408,115 @@ body {
   color: #d1d5db;
 }
 
-/* ================ TECH BADGES ================ */
-.tech-label {
-  margin-bottom: 2rem;
+/* ================ TECH CAROUSEL ================ */
+.tech-container {
+  margin-top: 3rem;
+}
+
+.tech-badge-row {
+  display: flex;
+  align-items: center;
+  background-color: #1f2937;
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  gap: 1rem;
 }
 
 .tech-badge {
-  background-color: #1f2937;
-  border-radius: 0.5rem;
-  padding: 1rem;
-  display: inline-block;
+  display: flex;
+  flex-direction: column;
+  padding-right: 1rem;
+  border-right: 1px solid #374151;
+  margin-right: 1rem;
 }
 
 .tech-trusted {
   font-size: 0.625rem;
   color: #9ca3af;
-  display: block;
-  margin-bottom: 0.5rem;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .tech-technologies {
   font-size: 0.625rem;
   color: #9ca3af;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
-.tech-icons {
-  display: flex;
-  gap: 2rem;
-  align-items: center;
-  flex-wrap: wrap;
+.tech-carousel-wrapper {
+  flex: 1;
+  overflow: hidden;
+  width: 100%;
+  padding: 10px 0;
 }
 
 .tech-icon {
-  width: 3rem;
+  width: 3rem; /* Increased size from 2.5rem to 3rem */
   height: 3rem;
-  background-color: #374151;
-  border-radius: 0.5rem;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: transform 0.2s ease;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
 }
 
 .tech-icon:hover {
   transform: scale(1.1);
 }
 
-.tech-text {
-  font-weight: 700;
-  font-size: 0.875rem;
+.tech-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: grayscale(100%) brightness(0.8);
+  transition: filter 0.3s ease;
 }
 
-.tech-text.js { color: #60a5fa; }
-.tech-text.ts { color: #3b82f6; }
-.tech-text.js-alt { color: #fbbf24; }
-.tech-text.react { color: #60a5fa; }
-.tech-text.node { color: #10b981; }
-.tech-text.python { color: #2563eb; }
+.tech-icon:hover img {
+  filter: grayscale(0%) brightness(1);
+}
+
+/* Alice Carousel overrides */
+.alice-carousel {
+  width: 100% !important;
+}
+
+.alice-carousel__stage {
+  display: flex !important;
+  align-items: center;
+  margin: 0 -15px !important;
+}
+
+.alice-carousel__stage-item {
+  padding: 0 15px !important;
+  transition: all 0.5s ease !important;
+}
+
+.alice-carousel__wrapper {
+  overflow: hidden;
+}
+
+.alice-carousel__stage-item.__active {
+  opacity: 1;
+  transform: scale(1);
+}
+
+.alice-carousel__stage-item:not(.__active) {
+  opacity: 0.7;
+  transform: scale(0.9);
+}
+
+/* Remove unused tech-icons styles */
+.tech-icon {
+  width: 3rem;
+  height: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.5rem;
+  transition: transform 0.3s ease;
+}
 
 /* ================ CONTACT GRID ================ */
 .contact-grid {
@@ -664,13 +666,14 @@ body {
     font-size: 2rem;
   }
 
-  .tech-icons {
-    gap: 1rem;
-  }
-
   .stats-grid {
     grid-template-columns: 1fr;
     gap: 1rem;
+  }
+
+  .tech-icon {
+    width: 2.5rem; /* Slightly smaller for mobile */
+    height: 2.5rem;
   }
 }
 

@@ -1,5 +1,5 @@
 import React from "react";
-import "./education.css"; // Adjust the path if your CSS file is elsewhere
+import "./education.css"; // Make sure your CSS file is properly linked
 
 const MyEducation = () => {
   return (
@@ -13,24 +13,19 @@ const MyEducation = () => {
         My <span className="highlight">Education</span>
       </h2>
 
+      <p className="education-subtext">
+        Education is an investment in knowledge, providing the expertise needed for success.
+        My academic background supports my ability to deliver impactful results.
+      </p>
+
       <div className="timeline">
         <div className="timeline-item">
-          <div className="timeline-period">2011 - 2015</div>
+          <div className="timeline-period">2018-22</div>
           <div className="timeline-content">
             <h3 className="timeline-title">Bachelor's in Computer Science</h3>
-            <p className="timeline-company">New York University</p>
+            <p className="timeline-company">Lahore Garrison University</p>
             <p className="timeline-description">
-              Specialized in Web Technologies and Human-Computer Interaction.
-            </p>
-          </div>
-        </div>
-        <div className="timeline-item">
-          <div className="timeline-period">2009 - 2011</div>
-          <div className="timeline-content">
-            <h3 className="timeline-title">High School Diploma</h3>
-            <p className="timeline-company">Tech High School</p>
-            <p className="timeline-description">
-              Focused on mathematics and computer programming.
+              Specialized in Software Development and Database Systems.
             </p>
           </div>
         </div>
