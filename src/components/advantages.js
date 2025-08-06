@@ -2,16 +2,19 @@ import React from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 import "./advantages.css";
+import { FaReact } from "react-icons/fa";
+import { SiNextdotjs, SiJavascript, SiMongodb } from "react-icons/si";
+import { FaLink, FaExchangeAlt } from "react-icons/fa";
 
 const MyAdvantages = () => {
   // Skills data for carousel
   const skills = [
-    { name: "React.js", percentage: 90, icon: "⚛️" },
-    { name: "Next.js", percentage: 85, icon: "🚀" },
-    { name: "JavaScript", percentage: 95, icon: "📜" },
-    { name: "Restful API's", percentage: 80, icon: "🔗" },
-    { name: "MongoDB", percentage: 75, icon: "🍃" },
-    { name: "API Integration", percentage: 85, icon: "🔄" }
+    { name: "React.js", percentage: 90, icon: <FaReact size={48} /> },
+    { name: "Next.js", percentage: 85, icon: <SiNextdotjs size={48} /> },
+    { name: "JavaScript", percentage: 95, icon: <SiJavascript size={48} /> },
+    { name: "Restful API's", percentage: 80, icon: <FaLink size={48} /> },
+    { name: "MongoDB", percentage: 75, icon: <SiMongodb size={48} /> },
+    { name: "API Integration", percentage: 85, icon: <FaExchangeAlt size={48} /> }
   ];
 
   // Carousel responsive settings

@@ -248,7 +248,7 @@ const Portfolio = () => {
               I Craft The <span className="highlight">Digital Landscape</span>
             </h1>
             <p className="hero-subtitle">
-              <strong>Websites, apps, design</strong>—yeah, I do all that and make it fire.
+              <strong>Websites, apps, design</strong> yeah, I do all that and make it fire.
               Let's collaborate and build something truly remarkable.
             </p>
 
