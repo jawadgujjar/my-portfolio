@@ -1,196 +1,218 @@
-.projects-carousel {
-  padding: 20px 0;
-  position: relative; /* Ensure arrows are positioned relative to carousel */
-}
-
-.carousel-container {
-  padding: 20px 60px; /* Increased padding to accommodate arrows */
+/* ================ 1. MAIN SECTION CONTAINER ================ */
+.projects-section {
+  padding: 80px 20px;
+  max-width: 1300px;
+  margin: 40px auto;
+  /* Image jaisa dark background */
+  background: #111111; 
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
+  overflow: hidden;
+  /* Section hover par halka transition */
+  transition: background 0.5s ease;
 }
 
-.carousel-item {
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.green-dot {
+  width: 10px;
+  height: 10px;
+  background: #4CAF50;
+  border-radius: 50%;
+  margin-right: 10px;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.section-label {
+  color: #4CAF50;
+  font-weight: 600;
+  letter-spacing: 2px;
+  font-size: 0.85rem;
+  text-transform: uppercase;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 2.8rem;
+  margin-bottom: 50px;
+  color: white;
+}
+
+.highlight {
+  color: #4CAF50;
+}
+
+/* ================ 2. CAROUSEL WRAPPER ================ */
+.carousel-wrapper {
+  width: 100%;
+  padding: 20px 0;
+}
+
+.carousel-item-custom {
   display: flex;
   justify-content: center;
+  padding: 20px; /* Space for the pop-up effect */
 }
 
-.project-card-link {
-  text-decoration: none;
-  color: inherit;
-  display: block;
-  margin: 0 15px;
+/* ================ 3. THE PROJECT CARD (POP-UP & COLOR SWITCH) ================ */
+.new-project-card {
+  /* Default State: Dark & Glassy */
+  background: #1a1a1a; 
+  border-radius: 20px;
   width: 100%;
-  max-width: 400px; /* Fixed max width for consistent card size */
-}
-
-.project-card {
-  background: #1e1e1e;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 450px; /* Fixed height for all cards */
+  max-width: 380px;
+  height: 540px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-}
-
-.project-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
-}
-
-.project-preview {
-  width: 100%;
-  height: 220px; /* Fixed height for preview area */
   overflow: hidden;
-  background: #2a2a2a; /* Fallback background */
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  
+  /* Smooth "Pop-up" transitions */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              background 0.4s ease, 
+              box-shadow 0.4s ease, 
+              border-color 0.4s ease;
+  
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
   position: relative;
+  z-index: 1;
 }
 
-.preview-iframe {
+/* HOVER STATE: Image jaisa Blue Gradient aur Pop-up */
+.new-project-card:hover {
+  /* Pop-up effect: Upar jaye aur thora bada ho */
+  transform: translateY(-20px) scale(1.02); 
+  
+  /* Blue Gradient Background switch (Image 8 style) */
+  background: linear-gradient(145deg, #1e3a8a 0%, #0f172a 100%); 
+  
+  /* Green Glowing Border aur Shadow */
+  border-color: #4CAF50;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
+              0 0 20px rgba(76, 175, 80, 0.25);
+  z-index: 10; /* Baaki cards ke upar dikhe */
+}
+
+.card-top {
+  height: 230px;
+  position: relative;
+  background: #000;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.card-iframe {
   width: 100%;
   height: 100%;
   border: none;
-  background: #ffffff; /* White background for iframe */
-  display: block;
+  pointer-events: none;
 }
 
-.project-info {
-  padding: 20px;
-  flex: 1;
+.iframe-blocker {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.card-bottom {
+  padding: 30px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: linear-gradient(180deg, #1e1e1e 0%, #2a2a2a 100%);
-}
-
-.project-title {
-  font-size: 1.4rem;
-  margin-bottom: 12px;
-  color: #ffffff;
-  font-weight: 600;
-  letter-spacing: 0.5px;
-}
-
-.project-description {
-  color: #d1d1d1;
-  margin-bottom: 15px;
-  line-height: 1.6;
-  font-size: 0.95rem;
   flex-grow: 1;
+  background: transparent;
 }
 
-.project-tech {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
+.card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 12px;
+  transition: transform 0.3s ease;
 }
 
-.tech-tag {
-  background: #4CAF50;
-  color: white;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  transition: background 0.3s ease;
-}
-
-.tech-tag:hover {
-  background: #45a049;
-}
-
-.visit-site {
-  color: #4CAF50;
-  font-weight: 600;
-  display: flex;
-  align-items: center;
-  font-size: 0.9rem;
+.card-desc {
+  font-size: 0.95rem;
+  color: #aaa; /* Default grey */
+  line-height: 1.6;
+  margin-bottom: 20px;
   transition: color 0.3s ease;
 }
 
-.visit-site:hover {
-  color: #45a049;
+/* Hover par text readability fix */
+.new-project-card:hover .card-desc {
+  color: #e2e8f0; 
 }
 
-.arrow {
-  margin-left: 8px;
-  transition: transform 0.3s ease;
-  font-size: 1.1rem;
+.tag-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.project-card:hover .arrow {
-  transform: translateX(5px);
+.tech-tag {
+  background: rgba(76, 175, 80, 0.1);
+  color: #4CAF50;
+  padding: 5px 12px;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 600;
+  border: 1px solid rgba(76, 175, 80, 0.2);
+  transition: all 0.3s ease;
 }
 
-/* Carousel arrows */
-.react-multiple-carousel__arrow {
-  background: rgba(76, 175, 80, 0.8);
-  border-radius: 50%;
-  z-index: 10;
-  transition: background 0.3s ease;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.react-multiple-carousel__arrow--left {
-  left: -50px; /* Move left arrow to the extreme left edge */
-}
-
-.react-multiple-carousel__arrow--right {
-  right: -50px; /* Move right arrow to the extreme right edge */
-}
-
-.react-multiple-carousel__arrow:hover {
+/* Hover par tags bhi glow karein */
+.new-project-card:hover .tech-tag {
   background: #4CAF50;
+  color: white;
 }
 
-/* Responsive adjustments */
+.site-link {
+  color: #4CAF50;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: 1rem;
+  display: inline-flex;
+  align-items: center;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.new-project-card:hover .site-link {
+  color: #ffffff;
+}
+
+/* ================ 4. MOBILE RESPONSIVENESS ================ */
 @media (max-width: 768px) {
-  .project-card {
-    height: 420px;
+  .projects-section {
+    padding: 40px 15px;
+    border-radius: 20px;
+    margin: 20px 10px;
+  }
+  
+  .new-project-card {
+    max-width: 320px;
+    margin: 0 auto;
+    height: auto;
+    min-height: 480px;
   }
 
-  .project-preview {
-    height: 200px;
+  /* Mobile par pop-up thora kam rakhein taake screen se bahar na jaye */
+  .new-project-card:hover {
+    transform: translateY(-10px) scale(1.01);
   }
 
-  .project-info {
-    padding: 15px;
+  .section-title {
+    font-size: 2rem;
   }
 
-  .project-title {
-    font-size: 1.2rem;
-  }
-
-  .project-description {
-    font-size: 0.9rem;
-  }
-
-  .carousel-container {
-    padding: 20px 40px; /* Adjusted padding for smaller screens */
-  }
-
-  .react-multiple-carousel__arrow--left {
-    left: -30px;
-  }
-
-  .react-multiple-carousel__arrow--right {
-    right: -30px;
-  }
-}
-
-@media (max-width: 464px) {
-  .project-card {
-    height: 400px;
-  }
-
-  .project-preview {
-    height: 180px;
-  }
-
-  .carousel-container {
-    padding: 20px 20px; /* Minimal padding for mobile */
+  .react-multiple-carousel__arrow {
+    display: none !important;
   }
 }

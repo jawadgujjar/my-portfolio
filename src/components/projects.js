@@ -6,107 +6,99 @@ import "./projects.css";
 const FeaturedProjects = () => {
   const projects = [
     {
-      title: "Brand Marketing Hub",
-      // description: "Full-featured online store with Stripe payment integration",
-      tech: ["React", "Node.js", "MongoDB"],
-      link: "https://bmh.vercel.app/"
+      title: "Soap Boxes Wholesale",
+      tech: ["WordPress", "Ecommerce","WooCommerce"],
+      link: "https://soapboxeswholesale.com/",
+      description: "Full-featured e-commerce packaging store."
     },
     {
       title: "clock 360",
-      // description: "Team collaboration tool with real-time updates",
       tech: ["Vue.js", "Firebase"],
-      link: "https://modest-tereshkova-3f6498.netlify.app/"
+      link: "https://modest-tereshkova-3f6498.netlify.app/",
+      description: "Custom time tracking and management tool."
+    },
+    {
+      title: "Brand Marketing Hub",
+      tech: ["React","Next js", "Node.js", "MongoDB"],
+      link: "https://bmh-new.vercel.app/",
+      description: "Digital marketing and web & app development hub."
     },
     {
       title: "Digital Block",
-      // description: "Interactive developer portfolio with project showcase",
       tech: ["React", "GSAP"],
-      link: "https://newdigital.vercel.app/"
-    },
-    {
-      title: "Sire Printing",
-      // description: "Interactive developer portfolio with project showcase",
-      tech: ["React", "Next js"],
-      link: "https://frontend.sireprinting.co.uk/"
+      link: "https://newdigital.vercel.app/",
+      description: "Modern portfolio with smooth animations."
     }
   ];
 
   const responsive = {
     desktop: {
       breakpoint: { max: 3000, min: 1024 },
-      items: 2,
-      slidesToSlide: 1
+      items: 3,
     },
     tablet: {
-      breakpoint: { max: 1024, min: 464 },
-      items: 1,
-      slidesToSlide: 1
+      breakpoint: { max: 1024, min: 768 },
+      items: 2,
     },
     mobile: {
-      breakpoint: { max: 464, min: 0 },
-      items: 1,
-      slidesToSlide: 1
+      breakpoint: { max: 768, min: 0 },
+      items: 1, // Strictly 1 card for mobile
     }
   };
 
   return (
-    <div className="section-card">
+    <section className="projects-section">
       <div className="section-header">
         <div className="green-dot"></div>
         <span className="section-label">FEATURED PROJECTS</span>
       </div>
 
-      <h2 className="about-title">
+      <h2 className="section-title">
         Featured <span className="highlight">Projects</span>
       </h2>
 
-      <div className="projects-carousel">
+      <div className="carousel-wrapper">
         <Carousel
           responsive={responsive}
           infinite={true}
           autoPlay={true}
           autoPlaySpeed={4000}
-          transitionDuration={500}
+          arrows={true}
+          centerMode={false} 
+          partialVisible={false}
           containerClass="carousel-container"
-          itemClass="carousel-item"
-          removeArrowOnDeviceType={["mobile"]}
+          itemClass="carousel-item-custom"
         >
           {projects.map((project, index) => (
-            <a 
-              href={project.link} 
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="project-card-link"
-              key={index}
-            >
-              <div className="project-card">
-                <div className="project-preview">
-                  <iframe
-                    src={project.link}
-                    title={`${project.title} Preview`}
-                    className="preview-iframe"
-                    sandbox="allow-same-origin allow-scripts"
-                    loading="lazy"
-                  />
-                </div>
-                <div className="project-info">
-                  <h3 className="project-title">{project.title}</h3>
-                  <p className="project-description">{project.description}</p>
-                  <div className="project-tech">
-                    {project.tech.map((tech, idx) => (
-                      <span className="tech-tag" key={idx}>{tech}</span>
+            <div className="new-project-card" key={index}>
+              <div className="card-top">
+                <iframe 
+                  src={project.link} 
+                  title={project.title} 
+                  className="card-iframe" 
+                  loading="lazy"
+                />
+                <div className="iframe-blocker" onClick={() => window.open(project.link, "_blank")}></div>
+              </div>
+              <div className="card-bottom">
+                <div>
+                  <h3 className="card-title">{project.title}</h3>
+                  <p className="card-desc">{project.description}</p>
+                  <div className="tag-container">
+                    {project.tech.map((t, i) => (
+                      <span key={i} className="tech-tag">{t}</span>
                     ))}
                   </div>
-                  <div className="visit-site">
-                    Visit Site <span className="arrow">→</span>
-                  </div>
                 </div>
+                <a href={project.link} target="_blank" rel="noreferrer" className="site-link">
+                  Visit Site →
+                </a>
               </div>
-            </a>
+            </div>
           ))}
         </Carousel>
       </div>
-    </div>
+    </section>
   );
 };
 
