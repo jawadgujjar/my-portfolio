@@ -122,9 +122,9 @@ const Portfolio = () => {
   };
 
   // Handle download CV - sends email
-  const handleDownloadCV = () => {
-    window.location.href = "mailto:jawadgujjar573@gmail.com?subject=CV%20Request&body=Hello%20Jawad,%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AThank%20you!";
-  };
+  // const handleDownloadCV = () => {
+  //   window.location.href = "mailto:jawadgujjar573@gmail.com?subject=CV%20Request&body=Hello%20Jawad,%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AThank%20you!";
+  // };
 
   // Tech icons data
   const techIcons = [
@@ -204,11 +204,14 @@ const Portfolio = () => {
             </a>
           </div>
         </div>
-
-        <button className="download-btn" onClick={handleDownloadCV}>
-          <Download className="download-icon" />
-          DOWNLOAD CV
-        </button>
+<button
+  className="download-btn"
+  onClick={() =>
+    window.open("https://wa.me/923201018646", "_blank")
+  }
+>
+  💬 Chat on WhatsApp
+</button>
       </div>
 
       {/* Main Content */}
@@ -240,7 +243,9 @@ const Portfolio = () => {
               </div>
             </div>
 
-            <button className="hire-btn">HIRE ME</button>
+            <a href="mailto:jawadgujjar573@gmail.com">
+              <button className="hire-btn">HIRE ME</button>
+            </a>
 
             <div className="tech-container">
               <div className="tech-badge-row">
