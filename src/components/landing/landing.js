@@ -1,6 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
 import {
-  Download,
   Home,
   User,
   Briefcase,
