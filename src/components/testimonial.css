@@ -1,77 +1,155 @@
-.testimonial-carousel {
-  padding: 20px 0;
+/* ================ 1. MAIN SECTION CONTAINER ================ */
+.section-card {
+  padding: 80px 20px;
+  max-width: 1300px;
+  margin: 40px auto;
+  background: #111111; /* Solid Dark Background */
+  border-radius: 30px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
   position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: background 0.5s ease;
 }
 
-.carousel-container {
-  padding: 20px 60px;
-  position: relative;
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.green-dot {
+  width: 10px;
+  height: 10px;
+  background: #4CAF50;
+  border-radius: 50%;
+  margin-right: 10px;
+  box-shadow: 0 0 10px rgba(76, 175, 80, 0.5);
+}
+
+.section-label {
+  font-size: 0.85rem;
+  color: #4CAF50;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.about-title {
+  font-size: 2.8rem;
+  color: #ffffff;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.highlight {
+  color: #4CAF50;
+}
+
+/* ================ 2. CAROUSEL & TRACK FIXES ================ */
+.testimonial-carousel {
+  width: 100% !important;
+  margin: 0 auto !important;
+}
+
+.react-multi-carousel-track {
+  display: flex !important;
+  align-items: stretch !important; /* Cards ki height equal rakhega */
 }
 
 .carousel-item {
-  display: flex;
-  justify-content: center;
+  display: flex !important;
+  justify-content: center !important;
+  padding: 20px 0 !important; /* Space for pop-up effect */
 }
 
+.carousel-container {
+  padding: 20px 0 !important;
+  width: 100% !important;
+}
+
+/* ================ 3. TESTIMONIAL CARD (POP-UP & COLOR SWITCH) ================ */
 .testimonial-card {
-  background: #1e1e1e;
-  border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  height: 350px; /* Fixed height for consistent card size */
+  background: #1a1a1a; 
+  border-radius: 20px;
+  width: 90%;
+  max-width: 380px;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-  margin: 0 15px;
-  max-width: 400px; /* Match projects carousel card width */
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  
+  /* Smooth "Pop-up" transitions */
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              background 0.4s ease, 
+              box-shadow 0.4s ease, 
+              border-color 0.4s ease;
+  
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  position: relative;
+  z-index: 1;
 }
 
+/* HOVER STATE: Projects jaisa Blue Gradient aur Pop-up */
 .testimonial-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+  transform: translateY(-20px) scale(1.02); 
+  background: linear-gradient(145deg, #1e3a8a 0%, #0f172a 100%); 
+  border-color: #4CAF50;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6), 
+              0 0 20px rgba(76, 175, 80, 0.25);
+  z-index: 10;
 }
 
 .testimonial-content {
-  padding: 20px;
+  padding: 30px;
   flex: 1;
   display: flex;
   flex-direction: column;
-  background: linear-gradient(180deg, #1e1e1e 0%, #2a2a2a 100%);
+  background: transparent; /* Taake hover gradient dikhe */
 }
 
 .testimonial-stars {
   display: flex;
   gap: 5px;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .testimonial-star {
-  width: 20px;
-  height: 20px;
-  color: #4CAF50;
-  fill: #4CAF50;
+  width: 18px;
+  height: 18px;
+  color: #ffc107;
+    fill: #ffc107;
 }
 
 .testimonial-text {
   color: #d1d1d1;
-  line-height: 1.6;
-  font-size: 0.95rem;
-  flex-grow: 1;
+  line-height: 1.7;
+  font-size: 1rem;
+  font-style: italic;
   margin-bottom: 15px;
+  transition: color 0.3s ease;
+}
+
+.testimonial-card:hover .testimonial-text {
+  color: #e2e8f0;
 }
 
 .testimonial-author {
   display: flex;
   align-items: center;
-  padding: 15px 20px;
-  background: #2a2a2a;
-  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 20px 30px;
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .author-image {
-  width: 50px;
-  height: 50px;
+  width: 55px;
+  height: 55px;
   border-radius: 50%;
+  border: 2px solid #4CAF50;
   overflow: hidden;
   margin-right: 15px;
 }
@@ -90,113 +168,32 @@
 .author-name {
   font-size: 1.1rem;
   color: #ffffff;
-  font-weight: 600;
-  margin-bottom: 5px;
+  font-weight: 700;
 }
 
 .author-position {
   font-size: 0.85rem;
-  color: #cccccc;
+  color: #999;
 }
 
-.section-card {
-  margin: 20px 0;
-}
-
-.section-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.green-dot {
-  width: 10px;
-  height: 10px;
-  background: #4CAF50;
-  border-radius: 50%;
-  margin-right: 10px;
-}
-
-.section-label {
-  font-size: 0.9rem;
-  color: #4CAF50;
-  font-weight: 500;
-}
-
-.about-title {
-  font-size: 2rem;
-  color: #ffffff;
-  margin-bottom: 20px;
-}
-
-.highlight {
-  color: #4CAF50;
-}
-
-/* Carousel arrows */
+/* ================ 4. ARROWS & MOBILE ================ */
 .react-multiple-carousel__arrow {
-  background: rgba(76, 175, 80, 0.8);
-  border-radius: 50%;
-  z-index: 10;
-  transition: background 0.3s ease;
-  position: absolute;
-  top: 50%;
-  transform: translateY(-50%);
+  background: rgba(76, 175, 80, 0.8) !important;
+  z-index: 5;
 }
 
-.react-multiple-carousel__arrow--left {
-  left: -50px;
-}
-
-.react-multiple-carousel__arrow--right {
-  right: -50px;
-}
-
-.react-multiple-carousel__arrow:hover {
-  background: #4CAF50;
-}
-
-/* Responsive adjustments */
 @media (max-width: 768px) {
+  .section-card {
+    padding: 40px 15px;
+    border-radius: 20px;
+  }
   .testimonial-card {
-    height: 320px;
+    max-width: 320px;
   }
-
-  .testimonial-content {
-    padding: 15px;
+  .testimonial-card:hover {
+    transform: translateY(-10px) scale(1.01);
   }
-
-  .testimonial-text {
-    font-size: 0.9rem;
-  }
-
-  .carousel-container {
-    padding: 20px 40px;
-  }
-
-  .react-multiple-carousel__arrow--left {
-    left: -30px;
-  }
-
-  .react-multiple-carousel__arrow--right {
-    right: -30px;
-  }
-}
-
-@media (max-width: 464px) {
-  .testimonial-card {
-    height: 300px;
-  }
-
-  .testimonial-content {
-    padding: 12px;
-  }
-
-  .testimonial-text {
-    font-size: 0.85rem;
-  }
-
-  .carousel-container {
-    padding: 20px 20px;
+  .about-title {
+    font-size: 2rem;
   }
 }

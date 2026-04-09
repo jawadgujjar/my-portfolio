@@ -1,6 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import AliceCarousel from 'react-alice-carousel';
-import 'react-alice-carousel/lib/alice-carousel.css';
 import {
   Download,
   Home,
@@ -27,7 +25,6 @@ import ContactMe from '../contactus';
 
 const Portfolio = () => {
   const sectionRefs = useRef([]);
-  const rightSidebarRef = useRef(null);
   const [activeSection, setActiveSection] = useState(0);
   const [balls, setBalls] = useState([]);
   const [displayText, setDisplayText] = useState('');
@@ -124,45 +121,23 @@ const Portfolio = () => {
     }
   };
 
-  // Tech icons for carousel with proper spacing
-  const techItems = [
-    <div className="tech-icon" key="html">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" alt="HTML" />
-    </div>,
-    <div className="tech-icon" key="css">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" alt="CSS" />
-    </div>,
-    <div className="tech-icon" key="js">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" alt="JavaScript" />
-    </div>,
-    <div className="tech-icon" key="react">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" alt="React" />
-    </div>,
-    <div className="tech-icon" key="node">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" alt="Node.js" />
-    </div>,
-    <div className="tech-icon" key="postman">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" alt="Postman" />
-    </div>,
-    <div className="tech-icon" key="mongodb">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" alt="MongoDB" />
-    </div>,
-    <div className="tech-icon" key="nextjs">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" alt="Next.js" />
-    </div>,
-    <div className="tech-icon" key="express">
-      <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" alt="Express" />
-    </div>
-  ];
-
-  // Carousel responsive settings
-  const responsive = {
-    0: { items: 3 },
-    600: { items: 4 },
-    768: { items: 5 },
-    1024: { items: 7 },
-    1200: { items: 9 } // Ensure all 9 icons are shown on larger screens
+  // Handle download CV - sends email
+  const handleDownloadCV = () => {
+    window.location.href = "mailto:jawadgujjar573@gmail.com?subject=CV%20Request&body=Hello%20Jawad,%0A%0AI%20would%20like%20to%20request%20your%20CV.%0A%0AThank%20you!";
   };
+
+  // Tech icons data
+  const techIcons = [
+    { name: "HTML5", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg" },
+    { name: "CSS3", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg" },
+    { name: "JavaScript", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
+    { name: "React", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg" },
+    { name: "Node.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg" },
+    { name: "Postman", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg" },
+    { name: "MongoDB", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mongodb/mongodb-original.svg" },
+    { name: "Next.js", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nextjs/nextjs-original.svg" },
+    { name: "Express", icon: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg" }
+  ];
 
   return (
     <div className="portfolio-container">
@@ -195,8 +170,10 @@ const Portfolio = () => {
               className="profile-img"
             />
           </div>
-          <h1 className="profile-name">JAWAD AHMAD</h1>
-          <span className="exp-badge">{displayText}</span>
+          <div className="profile-info">
+            <h1 className="profile-name">JAWAD AHMAD</h1>
+            <span className="exp-badge">{displayText}</span>
+          </div>
         </div>
 
         <div className="info-section">
@@ -228,7 +205,7 @@ const Portfolio = () => {
           </div>
         </div>
 
-        <button className="download-btn">
+        <button className="download-btn" onClick={handleDownloadCV}>
           <Download className="download-icon" />
           DOWNLOAD CV
         </button>
@@ -271,24 +248,13 @@ const Portfolio = () => {
                   <span className="tech-trusted">Trusted</span>
                   <span className="tech-technologies">Technologies</span>
                 </div>
-                <div className="tech-carousel-wrapper">
-                  <AliceCarousel
-                    mouseTracking
-                    items={techItems}
-                    responsive={responsive}
-                    autoPlay
-                    autoPlayInterval={1000}  // 1 second between moves
-                    animationDuration={500}  // Faster animation
-                    infinite
-                    disableDotsControls
-                    disableButtonsControls
-                    paddingLeft={15}
-                    paddingRight={15}
-                    animationType="linear"   // Smoother continuous movement
-                    autoPlayDirection="rtl"  // Right-to-left movement
-                    autoPlayStrategy="default"
-                    disableSlideInfo={true}
-                  />
+                <div className="tech-icons-wrapper">
+                  {techIcons.map((tech, index) => (
+                    <div key={index} className="tech-icon-item">
+                      <img src={tech.icon} alt={tech.name} className="tech-img" />
+                      <span className="tech-tooltip">{tech.name}</span>
+                    </div>
+                  ))}
                 </div>
               </div>
             </div>
@@ -378,7 +344,7 @@ const Portfolio = () => {
       </div>
 
       {/* Right Sidebar with 9 navigation icons */}
-      <div className="right-sidebar" ref={rightSidebarRef}>
+      <div className="right-sidebar">
         <button
           className={`nav-btn ${activeSection === 0 ? 'active' : ''}`}
           onClick={() => scrollToSection(0)}
